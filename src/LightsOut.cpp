@@ -60,7 +60,6 @@ void loop() {
     /*read winning player - set up for one player rn*/
     if (digitalRead(P1BUTTONPIN) == 0 ) {               //p1 button pressed (active low)
         digitalWrite(P1LEDPIN,HIGH);
-        long stopTime = millis();
         reactionTime = millis() - reactionTime;         //reaction time calucaltion between now and lights out
         
     }
