@@ -1,5 +1,6 @@
 /* Lights Out - A 2 player reaction test game */
 #include <Arduino.h>
+#include <LCD_I2C.h>
 #include <Wire.h>
 
 #define DEBUG
@@ -35,16 +36,27 @@ volatile unsigned int reactionTimeP2 = 0;
 #define STARTSEQUENCEDELAY 1000                 //delay before start sequence initated
 int lightsOutDelay = random(200,3000);          //random delay time for lights out between 0.2 and 3 seconds.
 
+LCD_I2C lcd(0x27,16,2);                //set 16x2 LCD display - check if I2C address is correct
+
 //put function declarations here:
 void lightpattern();
+void printWinMessage(char winner);
+void p1ButtonISR();
+void p2ButtonISR();
 
-/*=========================MAIN ARDUINO CODE===========================================================*/
-void setup() {
+    /*=========================MAIN ARDUINO CODE===========================================================*/
+    void setup() {
     pinMode(P1BUTTONPIN, INPUT_PULLUP); // use an intenral pullup no resistor needed on the button
     pinMode(P2BUTTONPIN, INPUT_PULLUP);
     #ifdef DEBUG
     Serial.begin(9600);
     #endif
+
+    lcd.begin();
+    lcd.backlight();
+    lcd.print("Lights Out!");
+    lcd.setCursor(0,1);
+    lcd.print("A reaction game");
     
     pinMode(P1LEDPIN, OUTPUT);
     pinMode(P2LEDPIN,OUTPUT);
@@ -58,9 +70,21 @@ void setup() {
 void loop() {
     switch (currentState) {
         case LINEUP:
-            if (digitalRead(P1BUTTONPIN) == LOW && digitalRead(P2BUTTONPIN) == LOW)         //game starts when both players press their buttons
-            {
+            lcd.noBacklight();
+            lcd.clear();
+            delay(50);
+            lcd.backlight();
+            delay(50);
+            lcd.setCursor(0,0);
+            lcd.print("Hold both button");
+            lcd.setCursor(0,1);
+            lcd.print("to continue");
+
+            if (digitalRead(P1BUTTONPIN) == LOW && digitalRead(P2BUTTONPIN) == LOW) {      //game starts when both players press their buttons
                 delay(1000); // short delay for reset
+                lcd.clear();
+                lcd.setCursor(0,0);
+                lcd.print("Grid set");
                 digitalWrite(P1LEDPIN, LOW);
                 digitalWrite(P2LEDPIN, LOW);
                 digitalWrite(P1JUMPLEDPIN, LOW);
@@ -70,6 +94,10 @@ void loop() {
             break;
         
         case STARTSEQUENCE:
+            lcd.clear();
+            lcd.noBacklight();
+        
+
             lightsOutDelay = random(200, 3000);
             // game loop
             delay(STARTSEQUENCEDELAY); 
@@ -98,17 +126,29 @@ void loop() {
                     #ifdef DEBUG
                         Serial.println("P1 jump start!");
                     #endif
+                    lcd.backlight();
+                    lcd.print("Jump start!");
+                    lcd.setCursor(0,1);
+                    lcd.print("P1 loses");
                 } else if (jumpStartP2 && !jumpStartP1) {
                     digitalWrite(P2JUMPLEDPIN, HIGH); // alert P2 jumped
                     #ifdef DEBUG
-                        Serial.println("P1 jump start!");
+                        Serial.println("P2 jump start!");
                     #endif
+                    lcd.backlight();
+                    lcd.print("Jump start!");
+                    lcd.setCursor(0, 1);
+                    lcd.print("P2 loses");
                 } else {
                     digitalWrite(P1JUMPLEDPIN, HIGH); // alert both players  jumped at the same time
                     digitalWrite(P2JUMPLEDPIN, HIGH);
                     #ifdef DEBUG
                         Serial.println("simultaneous jump start!");
                     #endif
+                    lcd.backlight();
+                    lcd.print("Jump start!");
+                    lcd.setCursor(0, 1);
+                    lcd.print("Double fault!");
                 }
                 currentState = GAMEOVER;
             }
@@ -138,23 +178,25 @@ void loop() {
             break;
         case GAMEOVER:
             // Display results and reset
-            if (winner == 1) {
             #ifdef DEBUG
-                Serial.print("Player 1 wins! Reaction time: ");
-                Serial.print(reactionTimeP1);
-                Serial.println(" ms");
+                if (winner == 1) {
+                //lcd function
+                    Serial.print("Player 1 wins! Reaction time: ");
+                    Serial.print(reactionTimeP1);
+                    Serial.println(" ms");
+                } else if (winner == 2) {
+
+                    Serial.print("Player 2 wins! Reaction time: ");
+                    Serial.print(reactionTimeP2);
+                    Serial.println(" ms");
+
+                } else if (winner == 3) {
+                    Serial.println("Tie!");
+                }
             #endif
-            } else if (winner == 2) {
-            #ifdef DEBUG
-                Serial.print("Player 2 wins! Reaction time: ");
-                Serial.print(reactionTimeP2);
-                Serial.println(" ms");
-            #endif
-            } else if (winner == 3) {
-            #ifdef DEBUG
-                Serial.println("Tie!");
-            #endif
-            }
+            
+            printWinMessage(winner);
+
 
             // Reset for next game
             winner = 0;
@@ -211,4 +253,29 @@ void p2ButtonISR() {
         reactionTimeP2 = millis() - lightsOutClock;
         buttonPressedP2 = true;
     }
+}
+
+/*****
+Purpose: Prints a message to the LCD to indicate who won the game
+
+Parameter list:
+  char winner - the winner as tracked by the game loop
+Return value:
+  void
+*****/
+void printWinMessage(char winner) {
+    lcd.backlight();
+    lcd.print("P");
+    lcd.setCursor(1,0);
+    lcd.print(winner);
+    lcd.setCursor(4,0);
+    lcd.print("Wins !Time:");
+    lcd.setCursor(0, 1);
+    if (winner == 1) {
+        lcd.print(reactionTimeP1);
+    } else {
+        lcd.print(reactionTimeP2);  //in the case that it is a tie, p2's time will be printed (redundant fallback)
+    }
+    lcd.setCursor(5, 1);
+    lcd.print("ms");
 }
