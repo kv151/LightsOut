@@ -3,7 +3,7 @@
 #include <LCD_I2C.h>
 #include <Wire.h>
 
-#define DEBUG
+//#define DEBUG
 
 //Define global definitions here:
 /* ------------ SHIFT REGISTER -------------*/
@@ -18,6 +18,8 @@ byte pattern = 0;
 #define P2LEDPIN 10 
 #define P1JUMPLEDPIN 8      //pins for yellow jumpstart leds
 #define P2JUMPLEDPIN 9
+#define BUZZERPIN 11
+#define BUZZERTONEFREQ 400  //Hz for buzzer tone - play around until it sounds good
 /*--------------GAME STATUS---------------*/
 volatile bool gameRunning = false;
 volatile bool buttonPressedP1 = false;
@@ -43,25 +45,35 @@ void lightpattern();
 void printWinMessage(char winner);
 void p1ButtonISR();
 void p2ButtonISR();
+void blinkWinnerLED(int ledPin);
 
     /*=========================MAIN ARDUINO CODE===========================================================*/
-    void setup() {
+    void setup()
+{
     pinMode(P1BUTTONPIN, INPUT_PULLUP); // use an intenral pullup no resistor needed on the button
     pinMode(P2BUTTONPIN, INPUT_PULLUP);
     #ifdef DEBUG
     Serial.begin(9600);
     #endif
 
-    lcd.begin();
-    lcd.backlight();
-    lcd.print("Lights Out!");
-    lcd.setCursor(0,1);
-    lcd.print("A reaction game");
     
     pinMode(P1LEDPIN, OUTPUT);
     pinMode(P2LEDPIN,OUTPUT);
     pinMode(P1JUMPLEDPIN,OUTPUT);
     pinMode(P2JUMPLEDPIN, OUTPUT);
+    pinMode(BUZZERPIN, OUTPUT);
+    
+    lcd.begin(); //initialise adn turn on LCD
+    lcd.backlight();
+    lcd.print("Lights Out!");
+    lcd.setCursor(0,1);
+    lcd.print("A reaction game");
+    delay(3000);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Press both to");
+    lcd.setCursor(0, 1);
+    lcd.print("start...");
 
     attachInterrupt(digitalPinToInterrupt(P1BUTTONPIN), p1ButtonISR, FALLING);      //ISR attached to button presses to allow game to keep running in loop and for accurate time detection
     attachInterrupt(digitalPinToInterrupt(P2BUTTONPIN), p2ButtonISR, FALLING);
@@ -70,21 +82,11 @@ void p2ButtonISR();
 void loop() {
     switch (currentState) {
         case LINEUP:
-            lcd.noBacklight();
-            lcd.clear();
-            delay(50);
-            lcd.backlight();
-            delay(50);
-            lcd.setCursor(0,0);
-            lcd.print("Hold both button");
-            lcd.setCursor(0,1);
-            lcd.print("to continue");
-
             if (digitalRead(P1BUTTONPIN) == LOW && digitalRead(P2BUTTONPIN) == LOW) {      //game starts when both players press their buttons
-                delay(1000); // short delay for reset
                 lcd.clear();
                 lcd.setCursor(0,0);
                 lcd.print("Grid set");
+                delay(1000);
                 digitalWrite(P1LEDPIN, LOW);
                 digitalWrite(P2LEDPIN, LOW);
                 digitalWrite(P1JUMPLEDPIN, LOW);
@@ -96,23 +98,20 @@ void loop() {
         case STARTSEQUENCE:
             lcd.clear();
             lcd.noBacklight();
-        
-
+            // game loop        
             lightsOutDelay = random(200, 3000);
-            // game loop
             delay(STARTSEQUENCEDELAY); 
-            
-            lightpattern();
-            delay(lightsOutDelay);
+            lightpattern(); // 1,2,3,4,5
+            delay(lightsOutDelay); 
             // LIGHTS OUT!
             pattern = 0;
             digitalWrite(SRLATCHPIN, LOW);                    // prepare to shift out from register
             shiftOut(SRDATAPIN, SRCLKPIN, MSBFIRST, pattern); // turn off lights
             digitalWrite(SRLATCHPIN, HIGH);                   // latch data to output
             
-            lightsOutClock = millis();
-            
+            lightsOutClock = millis();           
             currentState = LIGHTSOUT;
+            
             #ifdef DEBUG
             Serial.println("Lights out now!");
             #endif
@@ -122,30 +121,33 @@ void loop() {
             if (jumpStartP1 || jumpStartP2) {
                 // Jump start detected
                 if (jumpStartP1 && !jumpStartP2) {
-                    digitalWrite(P1JUMPLEDPIN, HIGH); // alert P1 jumped
+                    blinkWinnerLED(P1JUMPLEDPIN); // alert P1 jumped
                     #ifdef DEBUG
                         Serial.println("P1 jump start!");
                     #endif
                     lcd.backlight();
+                    lcd.clear();
                     lcd.print("Jump start!");
                     lcd.setCursor(0,1);
                     lcd.print("P1 loses");
                 } else if (jumpStartP2 && !jumpStartP1) {
-                    digitalWrite(P2JUMPLEDPIN, HIGH); // alert P2 jumped
+                    blinkWinnerLED(P2JUMPLEDPIN); // alert P2 jumped
                     #ifdef DEBUG
                         Serial.println("P2 jump start!");
                     #endif
                     lcd.backlight();
+                    lcd.clear();
                     lcd.print("Jump start!");
                     lcd.setCursor(0, 1);
                     lcd.print("P2 loses");
                 } else {
-                    digitalWrite(P1JUMPLEDPIN, HIGH); // alert both players  jumped at the same time
+                    digitalWrite(P1JUMPLEDPIN, HIGH); // alert both players jumped at the same time
                     digitalWrite(P2JUMPLEDPIN, HIGH);
                     #ifdef DEBUG
                         Serial.println("simultaneous jump start!");
                     #endif
                     lcd.backlight();
+                    lcd.clear();
                     lcd.print("Jump start!");
                     lcd.setCursor(0, 1);
                     lcd.print("Double fault!");
@@ -157,10 +159,10 @@ void loop() {
                 if (buttonPressedP1 && buttonPressedP2) {
                     if (reactionTimeP1 < reactionTimeP2) {
                         winner = 1;
-                        digitalWrite(P1LEDPIN, HIGH);
+                        blinkWinnerLED(P1LEDPIN);
                     } else if (reactionTimeP2 < reactionTimeP1) {
                         winner = 2;
-                        digitalWrite(P2LEDPIN, HIGH); 
+                        blinkWinnerLED(P2LEDPIN); 
                     } else {
                         winner = 3; // tie
                         digitalWrite(P1JUMPLEDPIN, HIGH);
@@ -168,10 +170,10 @@ void loop() {
                     }
                 } else if (buttonPressedP1) {
                     winner = 1;
-                    digitalWrite(P1LEDPIN, HIGH);
+                    blinkWinnerLED(P1LEDPIN);
                 } else if (buttonPressedP2) {
                     winner = 2;
-                    digitalWrite(P2LEDPIN, HIGH);
+                    blinkWinnerLED(P2LEDPIN);
                 }
                 currentState = GAMEOVER;
             }
@@ -180,23 +182,21 @@ void loop() {
             // Display results and reset
             #ifdef DEBUG
                 if (winner == 1) {
-                //lcd function
                     Serial.print("Player 1 wins! Reaction time: ");
                     Serial.print(reactionTimeP1);
                     Serial.println(" ms");
                 } else if (winner == 2) {
-
                     Serial.print("Player 2 wins! Reaction time: ");
                     Serial.print(reactionTimeP2);
                     Serial.println(" ms");
-
                 } else if (winner == 3) {
                     Serial.println("Tie!");
                 }
             #endif
             
-            printWinMessage(winner);
-
+            if (!jumpStartP1 && !jumpStartP2) {
+                printWinMessage(winner);
+            }
 
             // Reset for next game
             winner = 0;
@@ -207,6 +207,11 @@ void loop() {
             buttonPressedP2 = false;
             jumpStartP1 = false;
             jumpStartP2 = false;
+            // lcd.setCursor(0, 0);
+            // lcd.print("Hold both button");
+            // lcd.setCursor(0, 1);
+            // lcd.print("to start!");
+
             break;
         }
 }
@@ -221,22 +226,21 @@ Return value:
 *****/
 void lightpattern() {
     for (int i = 0; i < 5; i++) {
-      pattern = pattern | (1 << i); // lights up each light in sequence by ORing each bit with the previous one shifted per second
+      pattern = pattern | (1 << i);             // lights up each light in sequence by ORing each bit with the previous one shifted per second
   #ifdef DEBUG
       Serial.println(pattern, BIN);
   #endif
-      digitalWrite(SRLATCHPIN, LOW); // prepare to shift out from register
+      digitalWrite(SRLATCHPIN, LOW);            // prepare to shift out from register
       shiftOut(SRDATAPIN, SRCLKPIN, MSBFIRST, pattern);
-      digitalWrite(SRLATCHPIN, HIGH); // latch data to output
-      delay(1000);                    // 1 second delay betwwen lightup as per f1 standard
+      digitalWrite(SRLATCHPIN, HIGH);           // latch data to output
+      tone(BUZZERPIN, BUZZERTONEFREQ, 100);     //sound the buzzer at specified frequency for 100ms (tested this and this sounds good for lenght, play wiht                                     freq when in housing)
+      delay(1000);                             // 1 second delay betwwen lightup as per f1 standard
     }
 }
-
 /*****
 Purpose: ISR for p1 button
 *****/
-void p1ButtonISR()
-{
+void p1ButtonISR() {
     if (currentState == STARTSEQUENCE) {
         jumpStartP1 = true;
     }
@@ -265,17 +269,37 @@ Return value:
 *****/
 void printWinMessage(char winner) {
     lcd.backlight();
+    lcd.clear();
     lcd.print("P");
     lcd.setCursor(1,0);
-    lcd.print(winner);
-    lcd.setCursor(4,0);
-    lcd.print("Wins !Time:");
+    lcd.print((char)(winner + '0')); //prints the player by moving the ascii char to '0' (0x30)
+    lcd.setCursor(3,0);
+    lcd.print("Wins! Time:");
     lcd.setCursor(0, 1);
     if (winner == 1) {
         lcd.print(reactionTimeP1);
     } else {
         lcd.print(reactionTimeP2);  //in the case that it is a tie, p2's time will be printed (redundant fallback)
     }
-    lcd.setCursor(5, 1);
+    lcd.setCursor(4, 1);
     lcd.print("ms");
+}
+
+/*****
+Purpose: Blink an led for the winner and then keep it on
+
+Parameter list:
+  int LEDPIN - pin of hte LED to flash
+
+Return value:
+  void
+*****/
+void blinkWinnerLED(int ledPin) {
+    for (int i = 0; i < 5; i++) {
+        digitalWrite(ledPin,HIGH);
+        delay(100);
+        digitalWrite(ledPin,LOW);
+        delay(100);
+    }
+    digitalWrite(ledPin, HIGH);
 }
