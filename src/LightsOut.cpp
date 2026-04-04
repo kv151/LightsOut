@@ -91,19 +91,24 @@ void loop() {
             break;
         
         case LIGHTSOUT:
-            // Check for button presses or jump starts
             if (jumpStartP1 || jumpStartP2) {
                 // Jump start detected
                 if (jumpStartP1 && !jumpStartP2) {
-                    winner = 2; // Player 2 wins if P1 jumped
-                    digitalWrite(P2LEDPIN, HIGH); 
+                    digitalWrite(P1JUMPLEDPIN, HIGH); // alert P1 jumped
+                    #ifdef DEBUG
+                        Serial.println("P1 jump start!");
+                    #endif
                 } else if (jumpStartP2 && !jumpStartP1) {
-                    winner = 1; // Player 1 wins if P2 jumped
-                    digitalWrite(P1LEDPIN, HIGH);
+                    digitalWrite(P2JUMPLEDPIN, HIGH); // alert P2 jumped
+                    #ifdef DEBUG
+                        Serial.println("P1 jump start!");
+                    #endif
                 } else {
-                    winner = 3; // Tie if both jumped
-                    digitalWrite(P1JUMPLEDPIN, HIGH);
+                    digitalWrite(P1JUMPLEDPIN, HIGH); // alert both players  jumped at the same time
                     digitalWrite(P2JUMPLEDPIN, HIGH);
+                    #ifdef DEBUG
+                        Serial.println("simultaneous jump start!");
+                    #endif
                 }
                 currentState = GAMEOVER;
             }
