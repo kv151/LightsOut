@@ -54,12 +54,17 @@ void setup() {
 void loop() {
     //Start a new game
     gameRunning = true;
-    lightsOutDelay = random(200, 3000);
     if (winner != 0) {
+        lightsOutDelay = random(200, 3000);
         buttonPressedP1 = false;
         buttonPressedP2 = false;
         jumpStartP1 = false;
         jumpStartP2 = false;
+        digitalWrite(P1LEDPIN, LOW);
+        digitalWrite(P2LEDPIN, LOW);
+        digitalWrite(P1JUMPLEDPIN, LOW);
+        digitalWrite(P2JUMPLEDPIN, LOW);
+
         // game loop
         delay(STARTSEQUENCEDELAY); 
         
@@ -70,18 +75,55 @@ void loop() {
         Serial.println("Lights out clock");
         Serial.print(lightsOutClock);
         #endif
-        
-        //check for jump start
-        
-        //ISR for buttons
-        
-        
     }
+
+    //check for jump start
+
+    //ISR for buttons
+    if (buttonPressedP1 || buttonPressedP2) {
+        if (buttonPressedP1 && buttonPressedP2) {
+            if (reactionTimeP1 < reactionTimeP2) {
+                winner = 1; 
+                digitalWrite(P1LEDPIN, HIGH);
+            } else if (reactionTimeP2 < reactionTimeP1) {
+                winner = 2;
+                digitalWrite(P2LEDPIN,HIGH);
+            } else {
+                winner = 3;                                 //tie and light both warning leds
+                digitalWrite(P1JUMPLEDPIN, HIGH);
+                digitalWrite(P2JUMPLEDPIN, HIGH);
+            }
+        } else if (buttonPressedP1) {
+            winner = 1;
+            digitalWrite(P1LEDPIN, HIGH);
+            digitalWrite(P2LEDPIN, LOW);
+        } else if (buttonPressedP2) {
+            winner = 2;
+            digitalWrite(P2LEDPIN, HIGH);
+            digitalWrite(P1LEDPIN, LOW);
+        }
+    }
+
+    //output times
     #ifdef DEBUG
-    Serial.println("Reaction time:");
-    Serial.print(reactionTimeP1);
-    Serial.print(" ms");
+        if (winner == 1) {
+            Serial.println("Player 1 wins! Reaction time: ");
+            Serial.print(reactionTimeP1);
+            Serial.print(" ms");
+        } else if (winner == 2) {
+            Serial.println("Player 2 wins! Reaction time: ");
+            Serial.print(reactionTimeP2);
+            Serial.print(" ms");
+        } else if (winner = 3) {
+            Serial.println("Tie !");
+        } else {
+            Serial.println("undertermined");
+        }
     #endif
+
+    delay(5000); /// delay for a new game
+    gameRunning = false;
+
 }
 
 //put function definitions here:
