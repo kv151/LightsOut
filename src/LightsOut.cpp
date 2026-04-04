@@ -185,7 +185,7 @@ Purpose: ISR for p1 button
 *****/
 void p1ButtonISR()
 {
-    if (currentState == LINEUP) {
+    if (currentState == STARTSEQUENCE) {
         jumpStartP1 = true;
     }
     else if (currentState == LIGHTSOUT && !buttonPressedP1) {         //game is running and handle debounce/holding buttons to prevent multiple 
@@ -195,7 +195,7 @@ void p1ButtonISR()
 }
 
 void p2ButtonISR() {
-    if (currentState == LINEUP) {
+    if (currentState == STARTSEQUENCE) {
         jumpStartP2 = true;
     } else if (currentState == LIGHTSOUT && !buttonPressedP2) {       //game is running and handle debounce/holding buttons to prevent multiple 
         reactionTimeP2 = millis() - lightsOutClock;
