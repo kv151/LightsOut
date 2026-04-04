@@ -60,7 +60,11 @@ void loop() {
         case LINEUP:
             if (digitalRead(P1BUTTONPIN) == LOW && digitalRead(P2BUTTONPIN) == LOW)         //game starts when both players press their buttons
             {
-                delay(500);                                                                 // debounce delay
+                delay(1000); // short delay for reset
+                digitalWrite(P1LEDPIN, LOW);
+                digitalWrite(P2LEDPIN, LOW);
+                digitalWrite(P1JUMPLEDPIN, LOW);
+                digitalWrite(P2JUMPLEDPIN, LOW); 
                 currentState = STARTSEQUENCE;
             }
             break;
@@ -149,12 +153,13 @@ void loop() {
 
             // Reset for next game
             winner = 0;
-            digitalWrite(P1LEDPIN, LOW);
-            digitalWrite(P2LEDPIN, LOW);
-            digitalWrite(P1JUMPLEDPIN, LOW);
-            digitalWrite(P2JUMPLEDPIN, LOW);
+
             delay(3000); // Short delay before next game
             currentState = LINEUP;
+            buttonPressedP1 = false;
+            buttonPressedP2 = false;
+            jumpStartP1 = false;
+            jumpStartP2 = false;
             break;
         }
 }
