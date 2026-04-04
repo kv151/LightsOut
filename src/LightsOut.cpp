@@ -65,7 +65,11 @@ void loop() {
         
     }
 
-    
+    #ifdef DEBUG
+    Serial.println("Reaction time:");
+    Serial.print(reactionTime);
+    Serial.print(" ms");
+    #endif
 }
 
 //put function definitions here:
