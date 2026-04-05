@@ -1,7 +1,6 @@
 /* Lights Out - A 2 player reaction test game */
 #include <Arduino.h>
 #include <LCD_I2C.h>
-//#include <Wire.h>
 
 //#define DEBUG
 
@@ -12,8 +11,8 @@
 #define SRLATCHPIN 7        //storage register clock pin (latch)
 byte pattern = 0;
 /* ------------ GAME LEDS & BUTTON CONNECTIONS-----------------------*/
-#define P1BUTTONPIN 2       // p1's push button
-#define P2BUTTONPIN 3       // p2's push button
+#define P1BUTTONPIN 2       // p1s push button
+#define P2BUTTONPIN 3       // p2s push button
 #define P1LEDPIN 5          // pins for green win led
 #define P2LEDPIN 10 
 #define P1JUMPLEDPIN 8      //pins for yellow jumpstart leds
@@ -50,13 +49,12 @@ void blinkWinnerLED(int ledPin);
 
     /*=========================MAIN ARDUINO CODE===========================================================*/
     void setup() {
-    pinMode(P1BUTTONPIN, INPUT); // CHANGED - TRY USING 10K resistor on board for cleaner read
-    pinMode(P2BUTTONPIN, INPUT);
+    pinMode(P1BUTTONPIN, INPUT);        //10K pull down resistor required for buttons. 
+    pinMode(P2BUTTONPIN, INPUT);        // use smoothing rc for debounce.
     #ifdef DEBUG
     Serial.begin(9600);
     #endif
 
-    
     pinMode(P1LEDPIN, OUTPUT);
     pinMode(P2LEDPIN,OUTPUT);
     pinMode(P1JUMPLEDPIN,OUTPUT);
@@ -122,16 +120,16 @@ void loop() {
             lightsOutClock = millis();           
             currentState = LIGHTSOUT;
 
-#ifdef DEBUG
-            lcd.println("Lights out now!");
+            #ifdef DEBUG
+            Serial.println("Lights out now!");
             #endif
             break;
         
         case LIGHTSOUT:
-            if (jumpStartP1 || jumpStartP2) {
+            if (jumpStartP1 || jumpStartP2) {       // handle jump start game logic
                 // Jump start detected
                 if (jumpStartP1 && !jumpStartP2) {
-                    blinkWinnerLED(P1JUMPLEDPIN); // alert P1 jumped
+                    blinkWinnerLED(P1JUMPLEDPIN);    // alert P1 jumped
                     #ifdef DEBUG
                         lcd.println("P1 jump start!");
                     #endif
@@ -141,7 +139,7 @@ void loop() {
                     lcd.setCursor(0,1);
                     lcd.print("P1 loses");
                 } else if (jumpStartP2 && !jumpStartP1) {
-                    blinkWinnerLED(P2JUMPLEDPIN); // alert P2 jumped
+                    blinkWinnerLED(P2JUMPLEDPIN);   // alert P2 jumped
                     #ifdef DEBUG
                         Serial.println("P2 jump start!");
                     #endif
@@ -208,10 +206,9 @@ void loop() {
                 printWinMessage(winner);
             }
 
-            // Reset for next game
-            winner = 0;
+            winner = 0;                 // Reset for next game
 
-            delay(5000); // Short delay before next game
+            delay(5000);                // Short delay before next game
             buttonPressedP1 = false;
             buttonPressedP2 = false;
             buttonPressedBoth = false;
@@ -256,12 +253,9 @@ Purpose: ISR for p1 button
 *****/
 void p1ButtonISR() {
     #ifdef DEBUG
-    Serial.println("P1 PRESSED");
-    if (currentState == LINEUP) {
+        Serial.println("P1 PRESSED");
     #endif
-    #ifndef DEBUG
     if (currentState == LINEUP && digitalRead(P2BUTTONPIN) == HIGH) {
-    #endif
         buttonPressedBoth = true;
     } else if (currentState == STARTSEQUENCE) {
         jumpStartP1 = true;
