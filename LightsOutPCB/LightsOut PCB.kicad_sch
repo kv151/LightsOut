@@ -6723,7 +6723,7 @@
 				)
 			)
 		)
-		(property "Value" "10 kΩ"
+		(property "Value" "10kΩ"
 			(at 104.14 166.37 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6891,7 +6891,7 @@
 				)
 			)
 		)
-		(property "Value" "100 Ω"
+		(property "Value" "100Ω"
 			(at 36.83 125.73 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7332,7 +7332,7 @@
 				)
 			)
 		)
-		(property "Value" "220 Ω"
+		(property "Value" "220Ω"
 			(at 236.22 69.85 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7412,7 +7412,7 @@
 				)
 			)
 		)
-		(property "Value" "220 Ω"
+		(property "Value" "220Ω"
 			(at 236.22 40.64 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7570,7 +7570,7 @@
 				)
 			)
 		)
-		(property "Value" "560 Ω"
+		(property "Value" "560Ω"
 			(at 162.56 123.19 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7807,7 +7807,7 @@
 				)
 			)
 		)
-		(property "Value" "100 Ω"
+		(property "Value" "100Ω"
 			(at 35.56 166.37 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7887,7 +7887,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 162.56 48.26 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8772,7 +8772,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 162.56 73.66 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8851,7 +8851,7 @@
 				)
 			)
 		)
-		(property "Value" "10 kΩ"
+		(property "Value" "10kΩ"
 			(at 105.41 125.73 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9021,7 +9021,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 162.56 36.83 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9359,7 +9359,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1 uF"
+		(property "Value" "0.1uF"
 			(at 52.07 135.8899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9678,7 +9678,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 162.56 86.36 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9915,7 +9915,7 @@
 				)
 			)
 		)
-		(property "Value" "220 Ω"
+		(property "Value" "220Ω"
 			(at 236.22 54.61 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9995,7 +9995,7 @@
 				)
 			)
 		)
-		(property "Value" "220 Ω"
+		(property "Value" "220Ω"
 			(at 236.22 83.82 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10075,7 +10075,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 162.56 60.96 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10156,7 +10156,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1 uF"
+		(property "Value" "0.1uF"
 			(at 50.8 176.5299 0)
 			(show_name no)
 			(do_not_autoplace no)
