@@ -3,7 +3,7 @@
 #include <LCD_I2C.h>
 #include <Wire.h>
 
-//#define DEBUG
+#define DEBUG
 
 //Define global definitions here:
 /* ------------ SHIFT REGISTER -------------*/
@@ -75,11 +75,26 @@ void blinkWinnerLED(int ledPin);
     lcd.setCursor(0, 1);
     lcd.print("start...");
 
+    #ifdef DEBUG
+    Serial.print("Setup complete");
+    Serial.print(buttonPressedP1);
+    #endif
+    
+
     attachInterrupt(digitalPinToInterrupt(P1BUTTONPIN), p1ButtonISR, FALLING);      //ISR attached to button presses to allow game to keep running in loop and for accurate time detection
     attachInterrupt(digitalPinToInterrupt(P2BUTTONPIN), p2ButtonISR, FALLING);
 }
 
 void loop() {
+    #ifdef DEBUG
+        Serial.println(String(currentState));
+        Serial.println("P1 BUTTON PRESSED: ");
+        Serial.print(buttonPressedP1);
+        Serial.println("P2 BUTTON PRESSED: ");
+        Serial.print(buttonPressedP2);
+    #endif
+
+
     switch (currentState) {
         case LINEUP:
             if (digitalRead(P1BUTTONPIN) == LOW && digitalRead(P2BUTTONPIN) == LOW) {      //game starts when both players press their buttons
