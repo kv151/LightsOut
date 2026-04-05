@@ -93,8 +93,8 @@ void loop() {
             if (buttonPressedBoth) {      //game starts when both players press their buttons
                 lcd.clear();
                 lcd.setCursor(0,0);
-                lcd.print("Grid set");
-                delay(1000);
+                lcd.print("Grid set...");
+                delay(STARTSEQUENCEDELAY);
                 digitalWrite(P1LEDPIN, LOW);
                 digitalWrite(P2LEDPIN, LOW);
                 digitalWrite(P1JUMPLEDPIN, LOW);
