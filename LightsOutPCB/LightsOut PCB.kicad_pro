@@ -275,7 +275,32 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [],
+    "erc_exclusions": [
+      [
+        "pin_to_pin|520700|1676400|83ce1ff0-98c6-40b4-81d8-5ad8cc1a4a6e|a64ea6de-e147-4ddd-b162-9d1e65dea94b|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
+        ""
+      ],
+      [
+        "pin_to_pin|520700|1701800|c464af8a-1b1a-4f26-a73d-52b82ca5e3b3|96aef883-2af1-4e22-9e1c-75d621f24e00|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
+        ""
+      ],
+      [
+        "pin_to_pin|533400|1270000|ce9afede-bb85-4035-a169-f70c4026274e|730a7722-d26f-4efe-b0b3-e58a9a3202d5|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
+        "dw bout it"
+      ],
+      [
+        "pin_to_pin|533400|1295400|3a38ec15-1d9c-43dc-83be-1bd10e72bb78|f5026487-0c1e-40f8-bd4e-e8350967c3ce|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
+        ""
+      ],
+      [
+        "pin_to_pin|927100|1701800|9bdefbb5-2de1-4998-8933-2c73aed9e6da|8520ed01-37e8-47da-bdfa-1a5e0dc5e851|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
+        ""
+      ],
+      [
+        "pin_to_pin|939800|1295400|fb21f974-4d1c-464c-afef-35cb26f74866|31306c86-18b0-45e3-9090-b8eb560276ff|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55|/e63e39d7-6ac0-4ffd-8aa3-1841a4541b55",
+        ""
+      ]
+    ],
     "meta": {
       "version": 0
     },
@@ -537,11 +562,16 @@
         "tuning_profile": ""
       },
       {
+        "microvia_diameter": 0.4,
+        "microvia_drill": 0.2,
         "name": "Power",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "tuning_profile": ""
+        "track_width": 0.5,
+        "tuning_profile": "",
+        "via_diameter": 0.7,
+        "via_drill": 0.5
       }
     ],
     "meta": {
@@ -758,7 +788,7 @@
         "uuid": "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55"
       }
     ],
-    "used_designators": "",
+    "used_designators": "#FLG1-2,R1-14,J1-5,BZ1,#PWR1-16,LED1-9,C1-2,SW1-2,U1",
     "variants": []
   },
   "sheets": [
