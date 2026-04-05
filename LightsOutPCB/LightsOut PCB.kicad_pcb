@@ -1468,7 +1468,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "797ff430-678b-4c6d-9f52-dd1e6a965ddd")
@@ -1896,7 +1896,7 @@
 				)
 			)
 		)
-		(property "Value" "10 kΩ"
+		(property "Value" "10kΩ"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "35b22dd3-0693-47fa-beb2-9f7f46c5e321")
@@ -2329,7 +2329,7 @@
 		(property "Reference" "LED4"
 			(at 1.27 -3.96 90)
 			(layer "F.SilkS")
-			(uuid "3cb6b2eb-d1d6-4643-a8d3-59444aeb26c9")
+			(uuid "9a2f23ad-2afb-4000-a12b-4e8d5ad1958e")
 			(effects
 				(font
 					(size 0.8 0.8)
@@ -2341,7 +2341,7 @@
 			(at 1.27 3.96 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e5422a1c-7883-4e50-b314-77fb67d50e56")
+			(uuid "958b8581-d12f-4e9e-ad9e-7d4e6ca2f7e5")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -2353,7 +2353,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "88244517-3111-4dac-9382-ffc037a651c4")
+			(uuid "4d0fab74-e54b-406d-b893-6daf941a3e8c")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -2365,7 +2365,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b5eaf268-e4f3-4261-98b0-e5ea928acde8")
+			(uuid "e91c1b61-472c-4b5b-918f-684c3cb60e6d")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -2373,7 +2373,7 @@
 				)
 			)
 		)
-		(property "Colour" "Red"
+		(property "Colour" "R"
 			(at 1 1.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -2718,7 +2718,7 @@
 				)
 			)
 		)
-		(property "Value" "10 kΩ"
+		(property "Value" "10kΩ"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "3f0e975e-45dd-41c3-986b-b222d95a0d74")
@@ -3753,7 +3753,7 @@
 				)
 			)
 		)
-		(property "Value" "220 Ω"
+		(property "Value" "220Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "4e3eabb5-529d-40c7-8cdd-b4e4998b354a")
@@ -4721,7 +4721,7 @@
 		(property "Reference" "LED1"
 			(at 1.27 -3.96 90)
 			(layer "F.SilkS")
-			(uuid "36f9199a-8211-4fe9-8869-0beabf8fe734")
+			(uuid "3ee1205a-090f-46a8-b6ff-0afbd39a4270")
 			(effects
 				(font
 					(size 0.8 0.8)
@@ -4733,7 +4733,7 @@
 			(at 1.27 3.96 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "afda4ee0-5e77-49eb-a032-06f73fa740bf")
+			(uuid "caa8e8e7-60fe-42ae-9700-afb59199fe40")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -4745,7 +4745,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "9892c393-9bda-4d47-a111-553a01c26355")
+			(uuid "5ffa78a1-7225-42e4-bb50-7751fc408953")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -4757,7 +4757,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1d79942d-82a3-4bfc-8a4c-1129e284b629")
+			(uuid "0d64a933-dda1-4e03-b3c0-bcbeafd03370")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -4765,7 +4765,7 @@
 				)
 			)
 		)
-		(property "Colour" "Red"
+		(property "Colour" "R"
 			(at 1.25 1.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -5704,7 +5704,7 @@
 				)
 			)
 		)
-		(property "Value" "220 Ω"
+		(property "Value" "220Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "f9400c3e-8534-43cf-843a-b28fd2bae9d0")
@@ -6132,7 +6132,7 @@
 				)
 			)
 		)
-		(property "Value" "220 Ω"
+		(property "Value" "220Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "20ae3c23-9080-4b5c-b566-31e15de037ee")
@@ -6651,7 +6651,7 @@
 				)
 			)
 		)
-		(property "Value" "0.1 uF"
+		(property "Value" "0.1uF"
 			(at 1 1.5 90)
 			(layer "F.SilkS")
 			(uuid "d7a4a535-7ce5-4820-bf91-a12652108650")
@@ -6828,7 +6828,7 @@
 				)
 			)
 		)
-		(property "Functionality Text" "Green"
+		(property "Functionality Text" "G"
 			(at 1.25 1.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -7163,7 +7163,7 @@
 		(descr "Resistor, Axial_DIN0204 series, Axial, Horizontal, pin pitch=7.62mm, 0.167W, length*diameter=3.6*1.6mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf, Alternate KiCad Library")
 		(tags "Resistor Axial_DIN0204 series Axial Horizontal pin pitch 7.62mm 0.167W length 3.6mm diameter 1.6mm")
 		(property "Reference" "R14"
-			(at 3.81 -1.92 0)
+			(at 3.81 1.75 0)
 			(layer "F.SilkS")
 			(uuid "2658ec0b-46e7-4a6d-a32a-718d55c63707")
 			(effects
@@ -7173,7 +7173,7 @@
 				)
 			)
 		)
-		(property "Value" "100 Ω"
+		(property "Value" "100Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "0a948198-1382-4e1a-a440-097436d00d42")
@@ -7637,7 +7637,7 @@
 				)
 			)
 		)
-		(property "Colour" "Red"
+		(property "Colour" "R"
 			(at 1.25 1.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -7982,7 +7982,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 3.81 0.05 0)
 			(layer "F.SilkS")
 			(uuid "ec81859c-9782-473c-a111-0e636e3c374d")
@@ -8410,7 +8410,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "94cb50a4-8da0-4c0b-9f4e-1e8d655504b4")
@@ -8838,7 +8838,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 3.81 -0.1 0)
 			(layer "F.SilkS")
 			(uuid "564398c5-5a12-437c-99a3-7139b0cdf199")
@@ -9266,7 +9266,7 @@
 				)
 			)
 		)
-		(property "Value" "220 Ω"
+		(property "Value" "220Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "9802c12c-dc52-46fb-a512-b32b34e1b262")
@@ -9694,7 +9694,7 @@
 				)
 			)
 		)
-		(property "Value" "330 Ω"
+		(property "Value" "330Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "c9e96c03-40a4-4d39-b60f-dbb166e69ae6")
@@ -10158,8 +10158,8 @@
 				)
 			)
 		)
-		(property "Colour" "Green"
-			(at 1.25 1.75 90)
+		(property "Colour" "G"
+			(at 1.25 1.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
 			(uuid "328deedb-93c4-4f96-adbf-51da3bd82ff1")
@@ -10990,7 +10990,7 @@
 		(descr "Resistor, Axial_DIN0204 series, Axial, Horizontal, pin pitch=7.62mm, 0.167W, length*diameter=3.6*1.6mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf, Alternate KiCad Library")
 		(tags "Resistor Axial_DIN0204 series Axial Horizontal pin pitch 7.62mm 0.167W length 3.6mm diameter 1.6mm")
 		(property "Reference" "R13"
-			(at 3.81 -1.92 0)
+			(at 3.56 1.75 0)
 			(layer "F.SilkS")
 			(uuid "52f62075-41a5-4301-8929-80b5daffbd04")
 			(effects
@@ -11000,7 +11000,7 @@
 				)
 			)
 		)
-		(property "Value" "100 Ω"
+		(property "Value" "100Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "6bf21027-48fa-4497-825d-9c5ba3fa828f")
@@ -11428,7 +11428,7 @@
 				)
 			)
 		)
-		(property "Value" "0.1 uF"
+		(property "Value" "0.1uF"
 			(at 1 -1.5 90)
 			(layer "F.SilkS")
 			(uuid "0212e981-e6ae-4d43-a6c4-c47c8ebe83f3")
@@ -11605,7 +11605,7 @@
 				)
 			)
 		)
-		(property "Colour" "Yellow"
+		(property "Colour" "Y"
 			(at 1.265 1.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -11950,7 +11950,7 @@
 				)
 			)
 		)
-		(property "Value" "560 Ω"
+		(property "Value" "560Ω"
 			(at 3.81 0 0)
 			(layer "F.SilkS")
 			(uuid "73152e6c-989c-4da2-b63b-61c64ac297f0")
@@ -12414,7 +12414,7 @@
 				)
 			)
 		)
-		(property "Colour" "Yellow"
+		(property "Colour" "Y"
 			(at 1.25 1.75 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -12751,7 +12751,7 @@
 		(property "Reference" "LED2"
 			(at 1.27 -3.96 90)
 			(layer "F.SilkS")
-			(uuid "5231acb6-8237-42bc-b6cf-793dcfb421d7")
+			(uuid "1513b8ff-ec63-46fc-8784-57b4eca9f93d")
 			(effects
 				(font
 					(size 0.8 0.8)
@@ -12763,7 +12763,7 @@
 			(at 1.27 3.96 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0e8d71b9-77ea-43af-b455-82682ce3f173")
+			(uuid "332c69e5-e3ab-4a09-a267-59b690cc8855")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -12775,7 +12775,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0c929104-5235-414e-b6d6-58554c616a0c")
+			(uuid "fde2d54f-1d49-4bc4-a0fa-b10eaaad52c9")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -12787,7 +12787,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b91e3a12-a9a9-4257-9942-2847c4b4e6a5")
+			(uuid "9e9ee0b9-ca5c-4e7c-b593-3d2db1e8357a")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -12795,7 +12795,7 @@
 				)
 			)
 		)
-		(property "Field4" "Red"
+		(property "Field4" "R"
 			(at 1.25 1.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -13132,7 +13132,7 @@
 		(property "Reference" "LED3"
 			(at 1.27 -3.96 90)
 			(layer "F.SilkS")
-			(uuid "adbd29c6-e549-47dd-b1d7-32ee43f8e67d")
+			(uuid "4ed8d3f5-2f52-4428-8945-b469291785ac")
 			(effects
 				(font
 					(size 0.8 0.8)
@@ -13144,7 +13144,7 @@
 			(at 1.27 3.96 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "190ce6ec-d0c5-472a-93cb-3129e14acb3b")
+			(uuid "9b1e79cd-2121-477e-8a76-141edc3e787c")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -13156,7 +13156,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "7af7b455-6473-4599-80d6-ddb119675a39")
+			(uuid "4a57562b-5dad-4f23-add5-2a7273279d61")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -13168,7 +13168,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "bd7c1b26-92f0-41dd-9e82-2642f40dc66c")
+			(uuid "8df480c9-2a01-4dc6-bc0e-ba7287fc3a76")
 			(effects
 				(font
 					(size 0.6 0.6)
@@ -13176,7 +13176,7 @@
 				)
 			)
 		)
-		(property "Colour" "Red"
+		(property "Colour" "R"
 			(at 1 1.5 90)
 			(unlocked yes)
 			(layer "F.SilkS")
@@ -13992,30 +13992,131 @@
 		(layer "Edge.Cuts")
 		(uuid "e85ef1cc-de7e-4135-b067-2c21807fe9fb")
 	)
+	(gr_text "GND"
+		(at 100.607143 58.5 0)
+		(layer "F.SilkS")
+		(uuid "0469da6b-15ea-4d8c-8191-33554d74b3e5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.25)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "VCC"
+		(at 100.702381 56.5 0)
+		(layer "F.SilkS")
+		(uuid "81ab4d2d-6196-47e8-8dc1-7385879bc46a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.25)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "SDA"
+		(at 100.72619 54.25 0)
+		(layer "F.SilkS")
+		(uuid "f8dc0915-cd47-430f-bf72-09c4a10a0636")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.25)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "SCL"
+		(at 100.75 52.25 0)
+		(layer "F.SilkS")
+		(uuid "244f92e8-ea05-4492-b4e0-6a272488ec62")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.25)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
 	(gr_text "PLAYER 2"
-		(at 166 60.5 90)
+		(at 167 61.5 90)
 		(layer "F.SilkS")
 		(uuid "2382f9b3-43c4-41a2-90ba-afd64521dff7")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.2)
+				(size 1.5 1.5)
+				(thickness 0.3)
 				(bold yes)
 			)
 			(justify left bottom)
 		)
 	)
 	(gr_text "PLAYER 1"
-		(at 166 85.5 90)
+		(at 167 89.5 90)
 		(layer "F.SilkS")
-		(uuid "4f47cd94-cfb8-42ee-b2f5-64f5af97eb84")
+		(uuid "c30dd3bd-b2cb-4aaf-9b3e-d9b0cdc89b97")
 		(effects
 			(font
-				(size 1 1)
-				(thickness 0.2)
+				(size 1.5 1.5)
+				(thickness 0.3)
 				(bold yes)
 			)
 			(justify left bottom)
+		)
+	)
+	(gr_text "Lights Out!"
+		(at 102.5 83.75 90)
+		(layer "B.SilkS")
+		(uuid "a9fc747d-96ed-4325-ac01-180781b28dcf")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "Rev. 0.1\n"
+		(at 104 83.75 90)
+		(layer "B.SilkS")
+		(uuid "e51a958c-be21-44f3-b5b2-bbc582138928")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "by kv151"
+		(at 105.5 83.75 90)
+		(layer "B.SilkS")
+		(uuid "f7c18d06-02a0-480b-8725-3a85dad6d7af")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "Simply lovely"
+		(at 124.5 72 90)
+		(layer "B.SilkS")
+		(uuid "111f4bf2-6489-47b4-ab15-745def79c0f2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+				(italic yes)
+			)
+			(justify left bottom mirror)
 		)
 	)
 	(gr_text "ICSP"
