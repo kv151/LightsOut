@@ -62,7 +62,9 @@ void blinkWinnerLED(int ledPin);
     pinMode(P1JUMPLEDPIN,OUTPUT);
     pinMode(P2JUMPLEDPIN, OUTPUT);
     pinMode(BUZZERPIN, OUTPUT);
-    
+    pinMode(SRLATCHPIN, OUTPUT);
+    pinMode(SRCLKPIN, OUTPUT);
+    pinMode(SRDATAPIN,OUTPUT);
 
     
     lcd.begin(); //initialise adn turn on LCD
@@ -236,6 +238,7 @@ Return value:
   none
 *****/
 void lightpattern() {
+    pattern = 0;
     for (int i = 0; i < 5; i++) {
       pattern = pattern | (1 << i);             // lights up each light in sequence by ORing each bit with the previous one shifted per second
   #ifdef DEBUG
