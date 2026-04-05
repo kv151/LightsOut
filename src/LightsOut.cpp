@@ -73,9 +73,9 @@ void blinkWinnerLED(int ledPin);
     delay(3000);
     lcd.clear();
     lcd.setCursor(0, 0);
-    lcd.print("Press both to");
+    lcd.print("Push both button");
     lcd.setCursor(0, 1);
-    lcd.print("start...");
+    lcd.print("to start...");
 
     #ifdef DEBUG
     Serial.print("Setup complete");
@@ -217,9 +217,9 @@ void loop() {
             lcd.clear();
             lcd.backlight();
             lcd.setCursor(0, 0);
-            lcd.print("Hold both button");
+            lcd.print("Push both button");
             lcd.setCursor(0, 1);
-            lcd.print("to start!");
+            lcd.print("to restart...");
             currentState = LINEUP;
 
             break;
