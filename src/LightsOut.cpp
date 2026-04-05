@@ -1,9 +1,9 @@
 /* Lights Out - A 2 player reaction test game */
 #include <Arduino.h>
 #include <LCD_I2C.h>
-#include <Wire.h>
+//#include <Wire.h>
 
-#define DEBUG
+//#define DEBUG
 
 //Define global definitions here:
 /* ------------ SHIFT REGISTER -------------*/
@@ -62,6 +62,8 @@ void blinkWinnerLED(int ledPin);
     pinMode(P1JUMPLEDPIN,OUTPUT);
     pinMode(P2JUMPLEDPIN, OUTPUT);
     pinMode(BUZZERPIN, OUTPUT);
+    
+
     
     lcd.begin(); //initialise adn turn on LCD
     lcd.backlight();
@@ -207,16 +209,19 @@ void loop() {
             // Reset for next game
             winner = 0;
 
-            delay(3000); // Short delay before next game
-            currentState = LINEUP;
+            delay(5000); // Short delay before next game
             buttonPressedP1 = false;
             buttonPressedP2 = false;
+            buttonPressedBoth = false;
             jumpStartP1 = false;
             jumpStartP2 = false;
-            // lcd.setCursor(0, 0);
-            // lcd.print("Hold both button");
-            // lcd.setCursor(0, 1);
-            // lcd.print("to start!");
+            lcd.clear();
+            lcd.backlight();
+            lcd.setCursor(0, 0);
+            lcd.print("Hold both button");
+            lcd.setCursor(0, 1);
+            lcd.print("to start!");
+            currentState = LINEUP;
 
             break;
         }
@@ -248,6 +253,7 @@ Purpose: ISR for p1 button
 *****/
 void p1ButtonISR() {
     #ifdef DEBUG
+    Serial.println("P1 PRESSED");
     if (currentState == LINEUP) {
     #endif
     #ifndef DEBUG
@@ -263,6 +269,9 @@ void p1ButtonISR() {
 }
 
 void p2ButtonISR() {
+    #ifdef DEBUG
+        Serial.println("P2 PRESSED");
+    #endif
     if (currentState == LINEUP && digitalRead(P1BUTTONPIN) == HIGH) {
         buttonPressedBoth = true;
     } else if (currentState == STARTSEQUENCE) {
@@ -278,25 +287,25 @@ Purpose: Prints a message to the LCD to indicate who won the game
 
 Parameter list:
   char winner - the winner as tracked by the game loop
-Return value:
+Return value:`
   void
 *****/
 void printWinMessage(char winner) {
     lcd.backlight();
     lcd.clear();
-    Serial.print("P");
+    lcd.print("P");
     lcd.setCursor(1,0);
-    Serial.print((char)(winner + '0')); //prints the player by moving the ascii char to '0' (0x30)
+    lcd.print((char)(winner + '0')); //prints the player by moving the ascii char to '0' (0x30)
     lcd.setCursor(3,0);
-    Serial.print("Wins! Time:");
+    lcd.print("Wins! Time:");
     lcd.setCursor(0, 1);
     if (winner == 1) {
-        Serial.print(reactionTimeP1);
+        lcd.print(reactionTimeP1);
     } else {
-        Serial.print(reactionTimeP2);  //in the case that it is a tie, p2's time will be printed (redundant fallback)
+        lcd.print(reactionTimeP2);  //in the case that it is a tie, p2's time will be printed (redundant fallback)
     }
     lcd.setCursor(4, 1);
-    Serial.print("ms");
+    lcd.print("ms");
 }
 
 /*****
