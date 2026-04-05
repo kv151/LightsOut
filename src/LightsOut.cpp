@@ -105,8 +105,7 @@ void loop() {
         
         case STARTSEQUENCE:
             lcd.clear();
-            lcd.noBacklight();
-            // game loop        
+            lcd.noBacklight();    
             lightsOutDelay = random(200, 3000);
             delay(STARTSEQUENCEDELAY); 
             lightpattern(); // 1,2,3,4,5
