@@ -63,6 +63,10 @@
       ],
       "drc_exclusions": [
         [
+          "footprint_symbol_field_mismatch|134250000|57500000|701d592e-a3b3-4512-8c9a-931cf3127f8b|00000000-0000-0000-0000-000000000000",
+          "borrowed that field"
+        ],
+        [
           "lib_footprint_mismatch|130196000|49225000|00000000-0000-0000-0000-0000551afd43|00000000-0000-0000-0000-000000000000",
           "trust the template"
         ],
@@ -617,7 +621,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "Gerbers/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
