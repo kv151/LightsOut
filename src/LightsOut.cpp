@@ -19,8 +19,7 @@ byte pattern = 0;
 #define P2JUMPLEDPIN 9
 #define BUZZERPIN 11
 #define BUZZERTONEFREQ 400  //Hz for buzzer tone - play around until it sounds good
-/*--------------GAME STATUS---------------*/
-volatile bool gameRunning = false;
+/*--------------GAME STATE---------------*/
 volatile bool buttonPressedP1 = false;
 volatile bool buttonPressedP2 = false;
 volatile bool buttonPressedBoth = false;
@@ -48,14 +47,14 @@ void p2ButtonISR();
 void blinkWinnerLED(int ledPin);
 
     /*=========================MAIN ARDUINO CODE===========================================================*/
-    void setup() {
+void setup() {
     pinMode(P1BUTTONPIN, INPUT);        //10K pull down resistor required for buttons. 
     pinMode(P2BUTTONPIN, INPUT);        // use smoothing rc for debounce.
     #ifdef DEBUG
     Serial.begin(9600);
     #endif
 
-    pinMode(P1LEDPIN, OUTPUT);
+    pinMode(P1LEDPIN, OUTPUT);          //set Arduino pins
     pinMode(P2LEDPIN,OUTPUT);
     pinMode(P1JUMPLEDPIN,OUTPUT);
     pinMode(P2JUMPLEDPIN, OUTPUT);
@@ -65,7 +64,7 @@ void blinkWinnerLED(int ledPin);
     pinMode(SRDATAPIN,OUTPUT);
 
     
-    lcd.begin(); //initialise adn turn on LCD
+    lcd.begin();                        //initialise and turn on LCD
     lcd.backlight();
     lcd.print("Lights Out!");
     lcd.setCursor(0,1);
@@ -82,9 +81,8 @@ void blinkWinnerLED(int ledPin);
     Serial.print(buttonPressedP1);
     #endif
     
-
     attachInterrupt(digitalPinToInterrupt(P1BUTTONPIN), p1ButtonISR, RISING);      //ISR attached to button presses to allow game to keep running in loop and for accurate time detection
-    attachInterrupt(digitalPinToInterrupt(P2BUTTONPIN), p2ButtonISR, RISING);      //CHANGED - inverted logic here for pull down resistors 
+    attachInterrupt(digitalPinToInterrupt(P2BUTTONPIN), p2ButtonISR, RISING);      //buttons configured as pull-down active high
 }
 
 void loop() {
@@ -207,7 +205,7 @@ void loop() {
 
             winner = 0;                 // Reset for next game
 
-            delay(5000);                // Short delay before next game
+            delay(4000);                // Short delay before next game
             buttonPressedP1 = false;
             buttonPressedP2 = false;
             buttonPressedBoth = false;
@@ -218,7 +216,7 @@ void loop() {
             lcd.setCursor(0, 0);
             lcd.print("Push both button");
             lcd.setCursor(0, 1);
-            lcd.print("to restart...");
+            lcd.print("to line up...");
             currentState = LINEUP;
 
             break;
